@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friendship Day Popup</title>
+  <style>
+    /* Enter name container styles */
+    .name-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .name-input {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .submit-btn {
+      background-color:  rgb(245, 222, 179);
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+    }
+
+    /* Popup container styles */
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 450px;
+      height: 200px;
+      background-color: rgb(135, 206, 235); /* Pink background */
+      border-radius: 0; /* Make it square */
+      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    /* Popup content styles */
+    .popup-content {
+      color: #fff;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    /* Love buttons styles */
+    .love-btn {
+      background-color: rgb(255, 20, 147);
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.2s;
+    }
+
+    /* Hover effect for the love buttons */
+    .love-btn:hover {
+      background-color: rgb(255,20 , 147);
+    }
+  </style>
+</head>
+<body>
+  <div class="name-container">
+    <input type="text" class="name-input" id="nameInput" placeholder="Enter Your Name">
+    <button class="submit-btn" onclick="showPopup()">Submit</button>
+  </div>
+
+  <div class="popup-container" id="popupContainer">
+    <div class="popup-content">
+      <h2>Happy Friendship Day, <span id="friendName"></span>!</h2>
+      <p>CONGRATULATIONS! You made it to palak's friend's list</p>
+      <button class="love-btn" onclick="showLove()">Same to You</button>
+      <button class="love-btn" onclick="showIceCreamPopup()">THANK YOU SO MUCH!</button>
+      <button class="love-btn" onclick="showCustomPopup()">custom message</button>
+    </div>
+  </div>
+
+  <div class="popup-container" id="specialPopup">
+    <div class="popup-content">
+      <h2>Tu Mera Bhai H ...eskrim, <span id="specialFriendName"></span>!</h2>
+      <p>Happy Friendship Day!</p>
+      <button class="love-btn" onclick="closeSpecialPopup()">Close</button>
+    </div>
+  </div>
+
+  <div class="popup-container" id="customPopup">
+    <div class="popup-content">
+      <h2><span id="customMessage"></span>, <span id="customFriendName"></span>!</h2>
+      <p>Happy Friendship Day!</p>
+      <button class="love-btn" onclick="closeCustomPopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript function to show the popup
+    function showPopup() {
+      const nameInput = document.getElementById('nameInput').value.trim();
+      if (nameInput !== '') {
+        document.getElementById('friendName').innerText = nameInput;
+        document.getElementById('specialFriendName').innerText = nameInput;
+        document.getElementById('customFriendName').innerText = nameInput;
+
+        // Custom message logic
+        var customMessage = '';
+        switch (nameInput.toLowerCase()) {
+          case 'pratik':
+            customMessage = 'Tu mera bhai.';
+            break;
+          case 'priyanka':
+            customMessage = 'HeHeHeHeHe';
+            break;
+          case 'savi':
+            customMessage = 'Mera Bhai Omaiggot. chai bnauga tere liye';
+            break;
+          case 'sakshi':
+            customMessage = 'terko jk gipht m(jk)';
+            break;
+          // Add other name cases here
+          default:
+            customMessage = 'Happy Friendship Day!';
+        }
+        document.getElementById('customMessage').innerText = customMessage;
+
+        document.getElementById('popupContainer').style.display = 'block';
+        document.getElementById('nameContainer').style.display = 'none';
+      }
+    }
+
+    // Function to close the special popup
+    function closeSpecialPopup() {
+      document.getElementById('specialPopup').style.display = 'none';
+      document.getElementById('nameContainer').style.display = 'flex';
+    }
+
+    // Function to close the custom popup
+    function closeCustomPopup() {
+      document.getElementById('customPopup').style.display = 'none';
+      document.getElementById('nameContainer').style.display = 'flex';
+    }
+
+    // Function to show "Same to You" popup
+    function showLove() {
+      document.getElementById('popupContainer').style.display = 'none';
+      document.getElementById('specialPopup').style.display = 'block';
+    }
+
+    // Function to show "Thankuu Bhai Same to You" popup
+    function showIceCreamPopup() {
+      document.getElementById('popupContainer').style.display = 'none';
+      document.getElementById('specialPopup').style.display = 'block';
+    }
+
+    // Function to show the custom popup
+    function showCustomPopup() {
+      document.getElementById('popupContainer').style.display = 'none';
+      document.getElementById('customPopup').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
